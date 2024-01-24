@@ -1,1 +1,7 @@
-# AmazonDashboard
+Last semester, I located my dataset regarding a variety of sales occurring at an e-commerce business using (INR) through looking at datasheets on websites such as Kaggle. After locating my dataset, I performed data cleaning to eliminate any anomalies after loading the file into MySQL Workbench. After data cleaning, I loaded my dataset into Tableau and began curating various queries based on my project goals, eventually I got to the point of making the dashboard visually appealing and interactive as well while including some business insights on sales. 
+
+.......
+
+This Semester I would like to add in a new dataset from Kaggle regarding a more researched company, Amazon, my goal is to still use My SQL Workbench and switch over to PowerBi instead of Tableau (for new learning material) as this is the tool I will use in my full-time job after graduation, and I would like to develop a more robust business dashboard to show various companies and my classmates. I want a bigger dataset (Amazon) because I feel more comfortable coding in SQL now and I want to improve my visualization skills and understand what a company such as amazon might look for in a business/HR dashboard. I have never used PowerBi so this will be a big task of my learning and applying the dataset within the application. Going through a bigger dataset will also be a new journey of mine and I am excited to see how the cleaning of data will go and navigating correctly through the dataset. 
+
+
