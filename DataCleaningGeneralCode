@@ -1,0 +1,10 @@
+#Remove UNNESSARY Duplicates (Some Duplicates are needed in these spreadsheet) 
+Table.Distinct(AmazonTable)
+#Missing Values 
+Table.ReplaceValue(Amazon, null, DefaultValue, Replacer.ReplaceValue, {"ColumnName"})
+#Data Types Changes Neeeded
+Table.TransformColumnTypes(AmazonTable, {{"ColumnName", typeText}})
+#Handle Null Errors
+Table.ReplaceErrorValues(AmazonTable, {{"ColumnName", null}})
+#Remove Error Rows
+Table.RemoveRowsWithErrors(SourceTable)
