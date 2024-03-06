@@ -1,0 +1,69 @@
+ #Calculate average order value
+SELECT 
+    AVG(TotalAmount) AS AverageOrderValue
+FROM 
+    AmazonOrders
+
+ #Identify the most profitable customers
+SELECT TOP 5
+    CustomerName,
+    SUM(TotalAmount) AS TotalSpent
+FROM 
+    AmazonOrders
+GROUP BY 
+    CustomerName
+ORDER BY 
+    TotalSpent DESC
+
+ #Count the number of orders by product category
+SELECT 
+    ProductCategory,
+    COUNT(DISTINCT OrderID) AS NumberOfOrders
+FROM 
+    AmazonOrders
+GROUP BY 
+    ProductCategory
+
+ #Calculate the percentage of sales by product category
+SELECT 
+    ProductCategory,
+    SUM(TotalAmount) / (SELECT SUM(TotalAmount) FROM AmazonOrders) * 100 AS SalesPercentage
+FROM 
+    AmazonOrders
+GROUP BY 
+    ProductCategory
+
+#Identify the trend of customer acquisitions over time
+SELECT 
+    FORMAT(OrderDate, 'yyyy-MM') AS Month,
+    COUNT(DISTINCT CustomerID) AS NewCustomers
+FROM 
+    AmazonOrders
+GROUP BY 
+    FORMAT(OrderDate, 'yyyy-MM')
+ORDER BY 
+    Month
+
+ #Calculate the return rate of products
+SELECT 
+    ProductName,
+    COUNT(DISTINCT OrderID) AS TotalOrders,
+    COUNT(DISTINCT CASE WHEN ReturnStatus = 'Returned' THEN OrderID END) AS ReturnedOrders,
+    (COUNT(DISTINCT CASE WHEN ReturnStatus = 'Returned' THEN OrderID END) / NULLIF(COUNT(DISTINCT OrderID), 0)) * 100 AS ReturnRate
+FROM 
+    AmazonOrders
+GROUP BY 
+    ProductName
+
+ #Analyze shipping times
+SELECT 
+    DATEDIFF(day, OrderDate, ShippedDate) AS DaysToShip,
+    COUNT(OrderID) AS NumberOfOrders
+FROM 
+    AmazonOrders
+WHERE 
+    ShippedDate IS NOT NULL
+GROUP BY 
+    DATEDIFF(day, OrderDate, ShippedDate)
+ORDER BY 
+    DaysToShip
