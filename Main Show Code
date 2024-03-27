@@ -1,0 +1,31 @@
+Create a Date Table
+CREATE TABLE Date_Table (
+    Date DATE
+);
+
+INSERT INTO Date_Table (Date)
+SELECT DISTINCT Order_Date
+FROM Amazon_Data;
+
+Month Name
+SELECT FORMAT(Date, 'MMMM') AS Month_Name
+FROM Date_Table;
+
+YTD Sales
+SELECT SUM(Price_Dollar) AS YTD_Sales
+FROM Amazon_Data
+WHERE Order_Date BETWEEN DATEADD(YEAR, DATEDIFF(YEAR, 0, GETDATE()), 0) AND GETDATE();
+
+QTD Sales
+SELECT SUM(Price_Dollar) AS QTD_Sales
+FROM Amazon_Data
+WHERE Order_Date BETWEEN DATEADD(QUARTER, DATEDIFF(QUARTER, 0, GETDATE()), 0) AND GETDATE();
+
+YTD Products Sold
+SELECT COUNT(DISTINCT Product_Category) AS YTD_Products_Sold
+FROM Amazon_Data
+WHERE Order_Date BETWEEN DATEADD(YEAR, DATEDIFF(YEAR, 0, GETDATE()), 0) AND GETDATE();
+
+Month Number
+SELECT DATEPART(MONTH, Date) AS Month_Number
+FROM Date_Table;
